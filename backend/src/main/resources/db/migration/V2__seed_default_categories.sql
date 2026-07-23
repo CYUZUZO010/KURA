@@ -1,0 +1,17 @@
+INSERT INTO categories (user_id, name, type, color, icon, is_system) VALUES
+    (NULL, 'Salary',         'INCOME',  '#2D5A27', 'briefcase', TRUE),
+    (NULL, 'Freelance',      'INCOME',  '#2D5A27', 'laptop',    TRUE),
+    (NULL, 'Investments',    'INCOME',  '#2D5A27', 'trending-up', TRUE),
+    (NULL, 'Other Income',   'INCOME',  '#2D5A27', 'plus-circle', TRUE),
+    (NULL, 'Housing',        'EXPENSE', '#1A365D', 'home',      TRUE),
+    (NULL, 'Groceries',      'EXPENSE', '#8A6D3B', 'shopping-cart', TRUE),
+    (NULL, 'Transportation', 'EXPENSE', '#8A6D3B', 'car',       TRUE),
+    (NULL, 'Utilities',      'EXPENSE', '#8A6D3B', 'zap',       TRUE),
+    (NULL, 'Dining Out',     'EXPENSE', '#8A6D3B', 'coffee',    TRUE),
+    (NULL, 'Healthcare',     'EXPENSE', '#8A6D3B', 'heart',     TRUE),
+    (NULL, 'Entertainment',  'EXPENSE', '#8A6D3B', 'film',      TRUE),
+    (NULL, 'Subscriptions',  'EXPENSE', '#8A6D3B', 'repeat',    TRUE),
+    (NULL, 'Insurance',      'EXPENSE', '#8A6D3B', 'shield',    TRUE),
+    (NULL, 'Debt Payments',  'EXPENSE', '#B33A3A', 'credit-card', TRUE),
+    (NULL, 'Savings',        'EXPENSE', '#2D5A27', 'piggy-bank', TRUE),
+    (NULL, 'Other',          'EXPENSE', '#5A5A5A', 'more-horizontal', TRUE);
