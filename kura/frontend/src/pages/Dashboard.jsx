@@ -18,16 +18,28 @@ export default function Dashboard() {
   const [year, setYear] = useState(now.getFullYear())
   const [summary, setSummary] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   const monthLabel = new Date(year, month - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
-  useEffect(() => {
+  const fetchDashboard = () => {
     let cancelled = false
     setLoading(true)
+    setError(null)
     api.get('/analytics/dashboard', { params: { month, year } })
       .then(({ data }) => { if (!cancelled) setSummary(data) })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err.response?.data?.message || 'Unable to load dashboard data. Please check your backend connection.')
+        }
+      })
       .finally(() => { if (!cancelled) setLoading(false) })
     return () => { cancelled = true }
+  }
+
+  useEffect(() => {
+    const cleanup = fetchDashboard()
+    return cleanup
   }, [month, year])
 
   const shiftMonth = (delta) => {
@@ -54,8 +66,15 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {loading || !summary ? (
-        <div className="text-muted" style={{ padding: 40 }}>Loading…</div>
+      {loading ? (
+        <div className="text-muted" style={{ padding: 40, textAlign: 'center' }}>Loading…</div>
+      ) : error ? (
+        <div className="panel panel-padded flex items-center justify-between" style={{ padding: 24 }}>
+          <div className="text-muted">{error}</div>
+          <button className="btn btn-secondary btn-sm" onClick={fetchDashboard}>Retry</button>
+        </div>
+      ) : !summary ? (
+        <div className="text-muted" style={{ padding: 40, textAlign: 'center' }}>No summary available.</div>
       ) : (
         <>
           <div className="grid-3 mb-5">

@@ -28,14 +28,31 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Hamburger — only visible on small screens (see theme.css) */}
-      <button
-        className="mobile-menu-btn"
-        onClick={() => setMobileOpen(true)}
-        aria-label="Open menu"
-      >
-        <Menu size={18} strokeWidth={1.8} />
-      </button>
+      {/* Mobile Top Header Bar — visible only on small screens */}
+      <header className="mobile-header-bar">
+        <div className="flex items-center gap-3">
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation menu"
+          >
+            <Menu size={18} strokeWidth={1.8} />
+            <span>Menu</span>
+          </button>
+          <div style={styles.brand}>
+            <div style={styles.brandMark}>K</div>
+            <span style={{ fontWeight: 700, fontSize: 15, letterSpacing: '-0.01em' }}>KURA</span>
+          </div>
+        </div>
+        <button
+          onClick={toggleTheme}
+          style={styles.themeToggle}
+          title={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+          aria-label="Toggle theme"
+        >
+          {theme === 'light' ? <Moon size={15} strokeWidth={1.8} /> : <Sun size={15} strokeWidth={1.8} />}
+        </button>
+      </header>
 
       {/* Backdrop behind the sidebar when open on mobile */}
       <div
@@ -58,7 +75,7 @@ export default function Sidebar() {
             >
               {theme === 'light' ? <Moon size={15} strokeWidth={1.8} /> : <Sun size={15} strokeWidth={1.8} />}
             </button>
-            {/* Close button — only shown on mobile via CSS */}
+            {/* Close button — strictly visible on mobile drawer only */}
             <button className="mobile-close-btn" onClick={closeMobile} style={styles.themeToggle} aria-label="Close menu">
               <X size={15} strokeWidth={1.8} />
             </button>
