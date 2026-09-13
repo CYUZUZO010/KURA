@@ -26,6 +26,7 @@ real analytics dashboard.
 | Backend | Java 17, Spring Boot 3.3, Spring Security, Spring Data JPA, Flyway, PostgreSQL, JJWT, OpenCSV |
 | Frontend | React 18, Vite, React Router, Recharts, Axios, lucide-react |
 | Infra | Docker Compose (Postgres + backend + frontend) |
+<!-- Badge achievement test -->
 
 ## Project structure
 
